@@ -1,0 +1,61 @@
+ {% extends 'base.html' %}
+<html lang="en">
+    {% load static %}
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Product Shop Destination</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+
+        {% block content %}
+        <!-- Section-->
+        
+        
+        <section class="py-8">
+            <div class="container px-4 px-lg-1 mt-5">
+                <div class="row gx-6 gx-lg-9 row-cols-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
+                    {% for dest in dests %}
+                    <div class="col mb-5">
+                        <div class="card h-120">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{dest.image.url}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-2">
+                                <div class="text-center">
+
+                                  <!-- the sale -->
+                                    {% if dest.offer %}
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale Offer</div>
+                                    {% endif %}
+
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{dest.title}}</h5>
+                                    <!-- Product price-->
+                                    ${{dest.price}}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <center><p>{{dest.content}}</p></center>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div> 
+        </section>
+       
+        {% endblock %}
+
+</html>
